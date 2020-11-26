@@ -22,7 +22,6 @@ const server = new ApolloServer({
 })
 
 server.listen()
-    .then((response)=>{
-        console.log(`Port: ${response.url}`)
-        console.log(response)
+    .then(({url})=>{
+        console.log(`Port: ${url}`)
     })
