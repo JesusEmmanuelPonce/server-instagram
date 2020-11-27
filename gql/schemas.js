@@ -12,10 +12,20 @@ const typeDefs = gql `
         password: String
         createAt: String
     }
+    input UserInput{
+        name: String!
+        username: String !
+        email: String!
+        password: String!
+    }
     type Query{
         # User
         getUser: User
     }
+    type Mutation{
+        register(input: UserInput): User
+    }
+   
 `
 
 module.exports = typeDefs
