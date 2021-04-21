@@ -1,5 +1,17 @@
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+
+const createToken = (user, SECRET_KEY, expiresIn) => {
+    const { id, name, email, username } = user;
+    const payload = {
+        id,
+        name,
+        email,
+        username
+    }
+    return jwt.sign(payload, SECRET_KEY, { expiresIn })
+}
 
 exports.register = async(input) => {
 
@@ -39,7 +51,7 @@ exports.login = async(input) => {
     if(!passwordSuccess) throw new Error ('Email o contraseña incorrecta')
 
     return {
-        token: 'asdasdas'
+        token: createToken(userFound, "holaaa", "24h")
     }
 
 }
